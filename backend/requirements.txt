@@ -1,0 +1,4 @@
+Flask
+azure-mgmt-containerinstance
+azure-identity
+dotenv

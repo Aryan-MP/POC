@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform Deployment</title>
+</head>
+<body>
+    <h1>Deploy Terraform Template</h1>
+    <form id="deployForm">
+        <label for="templateUrl">Terraform Template URL:</label><br>
+        <input type="text" id="templateUrl" name="templateUrl" required><br><br>
+        <button type="submit">Deploy</button>
+    </form>
+
+    <script>
+        document.getElementById('deployForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const templateUrl = document.getElementById('templateUrl').value;
+            const response = await fetch('/deploy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ templateUrl: templateUrl })
+            });
+
+            const result = await response.json();
+            alert(result.message);
+        });
+    </script>
+</body>
+</html>
